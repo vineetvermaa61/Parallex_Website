@@ -1,0 +1,107 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* wrapper is working like viewport, iski height viewPort ki height ke barabar hogi */
+#wrapper{
+    height: 100vh;  
+    overflow-x:hidden; /* x-axis mein jo image overflow ho rahi hai wo hide ho jayegi */
+    overflow-y: auto;  /* y-axis mein normal flow chalega */
+    perspective: 10px; /* z-axis pe kaam karne ke liye perspective on kiya hai */
+}
+
+.container{
+    position: relative; /* conatiner ki position non-static/relative rakh rahe taki background aur foreground ki position absolute karke unhen overlap kara saken  */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* container ki height */
+    transform-style: preserve-3d; /* aisa isliye kar rahe kyonki hamein bg door aur foreground pass hone ka effect deke dono ko diff speed se move karana hai */
+     /* overall we require a 3d effect here in this container */
+    z-index: -1; /* kaun si layer kiske upar ane wali hai */
+                                
+}
+
+.background{
+    /* background ko door karna hai */
+    /* 40px door/translate karke , scale/zoom karke dekh rahe hain */
+    transform: translateZ(-40px) scale(5.1);
+}
+
+.foreground{
+    /* foreground ko door karna magar background se kam door */
+    /* door hone ki wajah se jo jyada door hoga wo dheere move karega jo kam door hota jayega teji se move karega */
+    transform: translateZ(-20px) scale(3);
+}
+
+.background, .foreground{
+    position: absolute; /* taaki bg aur fg image container ke respect mein absolute position par set ho jayen i.e. ab images overlap karengi */
+    height: 100%; 
+    /* ab dono ki complete height show hogi */
+    width: 100%;
+    z-index: -1; /* taaki ye dono images bhi peeche chali jaye aur "ADVENTURE" text aage a jaye */
+    object-fit: cover;
+     /* images container mein fit ho jayengi */
+}
+
+h1{
+    position: absolute; /* overlap */
+    top: 5rem;
+    font-size: 9rem;
+    letter-spacing: 4px;
+    color: white;
+    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+section{
+    background-color: rgb(45 45 45);
+    color: white;
+    padding: 5rem 0;
+}
+
+.secHeading{
+    font-size: 5rem;
+    padding: 0 10rem;
+}
+
+.text{
+    font-size: 1.5rem;
+    padding: 0 10rem;
+    margin: 5rem 0;
+}
+
+.desc{
+    position: absolute; /* overlap */
+    background-color: white;
+    padding: 0.5rem 2.5rem;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    color: black;
+    font-size: 3.5rem;
+    font-weight: 600;
+}
+
+.bg{
+    position: relative;
+    width: 100%;
+    background-attachment: fixed; /* aisa karne se bg image move nahi karegi, wo ek hi jagah par rahegi , uske upar content scroll karega */
+    background-position: center; /* aisa karne se bg mein jo image hai wo viewPort/screen ke ekdam center mein a jayegi */
+    background-size: cover; /* aisa karne se bg ki imagae screen ko poori tarah cover karke perfect fit ho jayegi */
+    height: 500px;
+} 
+
+.bg1{
+    background-image: url(/Main_Codes/Week2_CSS_Basics/12_parellex_website/images/sport-1.jpg);
+}
+
+.bg2{
+    background-image: url(/Main_Codes/Week2_CSS_Basics/12_parellex_website/images/sport-2.jpg);
+}
+
+.bg3{
+    background-image: url(/Main_Codes/Week2_CSS_Basics/12_parellex_website/images/sport-3.jpg);
+}
